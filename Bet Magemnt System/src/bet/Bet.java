@@ -1,7 +1,5 @@
 package bet;
 
-import exceptions.EventNotFoundException;
-
 public class Bet {
     private double stake = 0.0;
     private int eventID = 0;
@@ -47,7 +45,7 @@ public class Bet {
         database = new Database();
     }
 
-    public boolean makeBet(double stake,int eventID,int marketID) throws EventNotFoundException {
+    public boolean makeBet(double stake,int eventID,int marketID){
         boolean stakeWritten = database.writeData(this); // write data to databse
 
         if(stakeWritten){
@@ -60,7 +58,7 @@ public class Bet {
             return true;
         }
         else{
-            throw new EventNotFoundException("Event could not be found in the database");
+            return false;
         }
         
     }
