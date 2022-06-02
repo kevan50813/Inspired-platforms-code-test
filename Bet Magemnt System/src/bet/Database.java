@@ -8,29 +8,31 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * this class reperates the databse , for simplaicty reasons this will just read for a csv for now
+ * this class reperates the databse , for simplaicty reasons this will not connect to a databse for now but the framework is there
  */
-public class Database {
-    static final String DATA = "data.csv"; // tmep file for database
+public class Database implements DatabaseFactory {
 
+    @Override
     public boolean writeData(Bet b){
-        //write the data to a databas for now this is a basic csv, but the logic should hold for databse with minor chages
+        //write the data to a databas for now this has no datbase wring logic so will just return true after it logs the request
 
         try{
             logData(b.getStake(),b.getEventID(),b.getMarketID());
+            //TODO Write to database: for simaplicty reaosn the databse dose not exsit yet
             return true;
         } catch (Exception e){
             e.printStackTrace();
+
             return false;
         }
 
     }
 
+    @Override
     public boolean logData(double stake,int eventID,int marketID){
+        Logger logger = Logger.getLogger("DataLog");
         try{
-            Logger logger = Logger.getLogger("DataLog");
             FileHandler fh = new FileHandler("DataLog.log");
-
             StringBuilder sb1= new StringBuilder();
             sb1.append("Stake : £"+ stake);
 
@@ -51,6 +53,7 @@ public class Database {
             return true;
         }
         catch (Exception e){
+            logger.log(Level.SEVERE,"An execption occured when trying to log the data");
             e.printStackTrace();
             return false;
         }

@@ -17,6 +17,14 @@ class BetTest {
 
     @Test
     void testMakeBet() {
-        assertEquals(b.makeBet(b.getStake(),b.getEventID(),b.getMarketID()),true);
+        assertTrue(b.makeBet(b.getStake(), b.getEventID(), b.getMarketID()));
+    }
+
+    @Test
+    void testInputCheck(){
+        Bet invlaidBet = new Bet(-100.00,-50,0);
+        assertTrue(b.checkInput(b.getStake(), b.getEventID(), b.getMarketID()));
+        assertFalse(invlaidBet.checkInput(invlaidBet.getStake(), invlaidBet.getEventID(), invlaidBet.getMarketID()));
+
     }
 }

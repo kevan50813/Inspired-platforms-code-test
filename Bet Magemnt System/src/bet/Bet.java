@@ -46,6 +46,7 @@ public class Bet {
     }
 
     public boolean makeBet(double stake,int eventID,int marketID){
+        checkInput(stake,eventID,marketID);
         boolean stakeWritten = database.writeData(this); // write data to databse
 
         if(stakeWritten){
@@ -58,8 +59,16 @@ public class Bet {
             return true;
         }
         else{
+            System.out.println("An error occured when tryign to write bet to database");
             return false;
         }
-        
+
+    }
+
+    public boolean checkInput(double stake,int eventID,int marketID){
+        if (stake <= 0.0 || eventID <=0 || marketID <=0){
+            return false;
+        }
+        return true;
     }
 }

@@ -17,11 +17,11 @@ class DatabaseTest {
 
     @org.junit.jupiter.api.Test
     void testWriteData() {
-        assertEquals(d.writeData(b),true);
+        assertTrue(d.writeData(b));
     }
 
     @org.junit.jupiter.api.Test
     void testLogData() {
-        assertEquals(d.logData(b.getStake(),b.getEventID(),b.getMarketID()),true);
+        assertTrue(d.logData(b.getStake(), b.getEventID(), b.getMarketID()));
     }
 }
