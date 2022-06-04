@@ -17,12 +17,13 @@ public class Database implements DatabaseFactory {
         //write the data to a databas for now this has no datbase wring logic so will just return true after it logs the request
 
         try{
+            System.out.println("Writing data to database --- NOT IMPLEMENTED FOR THE PURPOSES OF THIS TEST");
             logData(b.getStake(),b.getEventID(),b.getMarketID());
             //TODO Write to database: for simaplicty reaosn the databse dose not exsit yet
             return true;
         } catch (Exception e){
+            System.out.println("An error occurred when writing to database");
             e.printStackTrace();
-
             return false;
         }
 
